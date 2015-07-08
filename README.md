@@ -14,7 +14,7 @@ Copier le répertoire du script dans js du projet
 
 Inclure le script
 
-    <script src="js/jquery.blockResponsive/jquery.blockResponsive.js"></script>
+    <script src="js/block-responsive/jquery.blockResponsive.js"></script>
 
 
 Utilisation
