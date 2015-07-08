@@ -9,11 +9,12 @@ Repositionnement de blocs à la volée en fonction de breakpoints
 Prérequis
 ----------
 
-Copier le répertoire du script dans include/js du projet
+Inclure jQuery
+Copier le répertoire du script dans js du projet
 
-Inclure le script (soit dans include/fo.entete.php et include/pseudo.entete.php, soit dans le fichier php voulu)
+Inclure le script
 
-    CMS::addJS(SERVER_ROOT . 'include/js/jquery.blockResponsive/jquery.blockResponsive.js');
+    <script src="js/jquery.blockResponsive/jquery.blockResponsive.js"></script>
 
 
 Utilisation
@@ -21,7 +22,13 @@ Utilisation
 
 Appliquer le script sur les éléments souhaités
 
-    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive();");
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $('.js-block-responsive').eolasBlockResponsive();
+            })
+        })(jQuery);
+    </script>
 
 L'élément ciblé prend autant d'attributs data que de breakpoints définis.
 
@@ -50,9 +57,14 @@ Activer le log
 
 Pour activer le log (désactivé par défaut) :
 
-    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive({
-        log: true
-    });");
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $('.js-block-responsive').eolasBlockResponsive();
+            })
+        })(jQuery);
+    </script>
+    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive();");
 
 
 Redéfinir les breakpoints
