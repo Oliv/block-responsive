@@ -1,8 +1,12 @@
 (function($) {
     "use strict";
 
-    $.eolasOptimizedResize = $.eolasOptimizedResize || (function() {
+    /**
+     * Optimisation de l'évènement resize
+     * Inspiré de MDN <https://developer.mozilla.org/>
+     **/
 
+    $.optimizedResize = $.optimizedResize || (function() {
         var callbacks = [],
             running = false;
 
@@ -25,6 +29,7 @@
         function runCallbacks() {
 
             callbacks.forEach(function(callback) {
+
                 callback();
             });
 
@@ -33,23 +38,20 @@
 
         // adds callback to loop
         function addCallback(callback) {
-
             if (callback) {
                 callbacks.push(callback);
             }
-
         }
 
         return {
-            // initalize resize event listener
-            init: function(callback) {
-                window.addEventListener('resize', resize);
-                addCallback(callback);
-            },
-
             // public method to add additional callback
             add: function(callback) {
+                if (!callbacks.length) {
+                    window.addEventListener('resize', resize);
+                }
                 addCallback(callback);
+
+                callback();
             }
         }
     }());
@@ -84,7 +86,7 @@
 
         this.log('Lancement du onResize optimisé');
 
-        $.eolasOptimizedResize.init($.proxy(this.run, this));
+        $.optimizedResize.add($.proxy(this.run, this));
         this.run();
 
         return this;
@@ -251,17 +253,17 @@
      * @param {Object} options objet des options
      * @returns {Collection} l'objet instancié, l'objet existant
      */
-    $.instancifyEolasBlockResponsive = function(inst, options) {
-        return inst.eolasBlockResponsive || (inst.eolasBlockResponsive = new BlockResponsive(inst, options));
+    $.instancifyBlockResponsive = function(inst, options) {
+        return inst.blockResponsive || (inst.blockResponsive = new BlockResponsive(inst, options));
     }
 
     /**
-     * BlockResponsive appelable par $(selector).eolasBlockResponsive({options});
+     * BlockResponsive appelable par $(selector).blockResponsive({options});
      *
      * @param {Object} options objet des options
      * @returns {Objet} this chainable
      */
-    $.fn.eolasBlockResponsive = function(options) {
+    $.fn.blockResponsive = function(options) {
         // Options par défaut
         var defaultOptions = {
             // Breakpoints
@@ -282,7 +284,7 @@
                 options = $.extend({}, defaultOptions, options);
 
                 // Crée une nouvelle instance
-                obj = $.instancifyEolasBlockResponsive(this, options);
+                obj = $.instancifyBlockResponsive(this, options);
             })
         }
 

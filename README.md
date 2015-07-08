@@ -25,7 +25,7 @@ Appliquer le script sur les éléments souhaités
     <script>
         (function($) {
             $(document).ready(function() {
-                $('.js-block-responsive').eolasBlockResponsive();
+                $('.js-block-responsive').blockResponsive();
             });
         })(jQuery);
     </script>
@@ -60,7 +60,7 @@ Pour activer le log (désactivé par défaut) :
     <script>
         (function($) {
             $(document).ready(function() {
-                $('.js-block-responsive').eolasBlockResponsive({
+                $('.js-block-responsive').blockResponsive({
                     log: true
                 });
             });
@@ -85,7 +85,7 @@ Pour redéfinir les breakpoints, passer en paramètre à la fonction les nouveau
     <script>
         (function($) {
             $(document).ready(function() {
-                $('.js-block-responsive').eolasBlockResponsive({
+                $('.js-block-responsive').blockResponsive({
                     breakpoints: {
                         mobile:  [null, 700],
                         tablet:  [700,  1000],
@@ -102,7 +102,7 @@ Il est possible de supprimer des breakpoints s'ils ne sont pas cohérents avec l
     <script>
         (function($) {
             $(document).ready(function() {
-                $('.js-block-responsive').eolasBlockResponsive({
+                $('.js-block-responsive').blockResponsive({
                     breakpoints: {
                         mobile:  [null, 800],
                         desktop: [800,  null]
@@ -143,7 +143,7 @@ breakpoint : le nom du nouveau breakpoint
 
 Utilisation :
 
-    $('.js-block-responsive').eolasBlockResponsive();
+    $('.js-block-responsive').blockResponsive();
 
     $('.js-block-responsive').on('blockMoveStart', function(event, blockResponsive, element, cible, pos, oldBreakpoint, breakpoint) {
         console.log('Le bloc ', element, ' se déplace de l\'état ', oldBreakpoint, ' vers ', breakpoint, ' vers la cible ', cible);
