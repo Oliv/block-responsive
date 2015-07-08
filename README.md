@@ -26,7 +26,7 @@ Appliquer le script sur les éléments souhaités
         (function($) {
             $(document).ready(function() {
                 $('.js-block-responsive').eolasBlockResponsive();
-            })
+            });
         })(jQuery);
     </script>
 
@@ -60,11 +60,12 @@ Pour activer le log (désactivé par défaut) :
     <script>
         (function($) {
             $(document).ready(function() {
-                $('.js-block-responsive').eolasBlockResponsive();
-            })
+                $('.js-block-responsive').eolasBlockResponsive({
+                    log: true
+                });
+            });
         })(jQuery);
     </script>
-    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive();");
 
 
 Redéfinir les breakpoints
@@ -81,23 +82,35 @@ Breakpoints par défaut :
 
 Pour redéfinir les breakpoints, passer en paramètre à la fonction les nouveaux breakpoints lors de son appel :
 
-    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive({
-        breakpoints: {
-            mobile:  [null, 700],
-            tablet:  [700,  1000],
-            desktop: [1000,  1200],
-            wide:    [1200, null]
-        }
-    });");
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $('.js-block-responsive').eolasBlockResponsive({
+                    breakpoints: {
+                        mobile:  [null, 700],
+                        tablet:  [700,  1000],
+                        desktop: [1000, 1200],
+                        wide:    [1200, null]
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
 
 Il est possible de supprimer des breakpoints s'ils ne sont pas cohérents avec le projet :
 
-    CMS::addDOMREADY("$('.js-block-responsive').eolasBlockResponsive({
-        breakpoints: {
-            mobile:  [null, 800],
-            desktop: [800,  null]
-        }
-    });");
+    <script>
+        (function($) {
+            $(document).ready(function() {
+                $('.js-block-responsive').eolasBlockResponsive({
+                    breakpoints: {
+                        mobile:  [null, 800],
+                        desktop: [800,  null]
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
 
 Dans ce cas mettre uniquement les attributs data correspondants
 
